@@ -18,6 +18,11 @@
  */
 package org.kapunga.cy.zone;
 
+import java.util.ArrayList;
+
+import org.bukkit.World;
+import org.kapunga.cy.util.WorldRect;
+
 /**
  * This class represents the core data object of the Contruction Yard plugin.
  * 
@@ -26,21 +31,106 @@ package org.kapunga.cy.zone;
  */
 public class Zone {
 	// The name of the world this Construction Zone is in.
-	private transient final String worldName;
+	private transient final WorldRect worldRect;
 	
 	// The name of the owner of this Construction Zone.
-	private transient final String playerName;
+	private transient final String ownerName;
 	
-	public Zone(final String worldName_, final String playerName_) {
-		this.worldName = worldName_;
-		this.playerName = playerName_;
+	// A list of people who are allowed to build in this Construction Zone.
+	private transient final ArrayList<String> coBuilders = new ArrayList<String>();
+	
+	/**
+	 * This is the Constructor for the Zone class.
+	 * @param worldName_
+	 * @param ownerName_
+	 */
+	public Zone(final WorldRect worldRect_, final String ownerName_) {
+		this.worldRect = worldRect_;
+		this.ownerName = ownerName_;
 	}
 	
-	public String getWorldName() { return worldName; }
+	/**
+	 * Returns name of the world this zone is in.
+	 * @return The name of the world this zone is in.
+	 */
+	public String getWorldName() { return worldRect.getWorldName(); }
 	
-	public boolean isInWorld(final String world) { return worldName.equals(world); }
+	/**
+	 * Check to see if this zone is in a given world.
+	 * @param worldName - The world we are checking.
+	 * @return true if the parameter "world" matches the world this zone is in,
+	 * otherwise false.
+	 */
+	public boolean isInWorld(final String worldName) { return worldRect.isInWorld(worldName); }
 	
-	public String getPlayerName() { return playerName; }
+	/**
+	 * Check to see if this zone is in a given world.
+	 * @param world - The world we are checking.
+	 * @return true if the parameter "world" matches the world this zone is in,
+	 * otherwise false.
+	 */
+	public boolean isInWorld(final World world) { return worldRect.isInWorld(world); }
 	
-	public boolean isOwnedBy(final String player) { return playerName.equals(player); }
+	/**
+	 * Get's the name of the owner of this zone.
+	 * @return The name of the Zone's owner.
+	 */
+	public String getOwnerName() { return ownerName; }
+	
+	/**
+	 * Check's if this Zone is owned by a particular Player
+	 * @param owner
+	 * @return true if the parameter "owner" matches the owner of this zone,
+	 * otherwise false.
+	 */
+	public boolean isOwnedBy(final String owner) { return ownerName.equals(owner); }
+	
+	/**
+	 * Adds an allowed builder to this zone.
+	 * @param builder The builder to add to this zone.
+	 * @return true if the builder was added, false if the builder was already added
+	 * or if "builder" matches the owner of this Zone.
+	 */
+	public boolean addBuilder(final String builder) {
+		if (ownerName.equals(builder)) {
+			// TODO: Throw IllegalArgumentException here. 
+			return false;
+		} else if (coBuilders.contains(builder)) {
+			return false;
+		} else {
+			coBuilders.add(builder);
+			return true;
+		}
+	}
+
+	/**
+	 * Removes an allowed builder from this zone.
+	 * @param builder The builder to remove from this zone.
+	 * @return true if the builder was removed, false if the builder was not allowed already
+	 * or if "builder" matches the owner of this Zone.
+	 */
+	public boolean removeBuilder(final String builder) {
+		if (ownerName.equals(builder)) {
+			// TODO: Throw IllegalArgumentException here. 
+			return false;
+		} else if (coBuilders.contains(builder)) {
+			coBuilders.remove(builder);
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	
+	/**
+	 * Checks if a person is allowed to build in this Zone.
+	 * @param builder The name of the player we are checking.
+	 * @return true if the player can build her, false otherwise.
+	 */
+	public boolean canBuildHere(final String builder) {
+		if (ownerName.equals(builder) || coBuilders.contains(builder)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

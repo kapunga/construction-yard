@@ -115,18 +115,25 @@
                         <version>${cobertura.version}</version>
                         <configuration>
                             <check>
+                                <!-- 
 								<branchRate>85</branchRate>
 								<lineRate>85</lineRate>
-								<haltOnFailure>false</haltOnFailure>
+								<haltOnFailure>true</haltOnFailure>
 								<totalBranchRate>85</totalBranchRate>
 								<totalLineRate>85</totalLineRate>
 								<packageLineRate>85</packageLineRate>
 								<packageBranchRate>85</packageBranchRate>
+								-->
                                 <regexes>
                                     <regex>
+                                        <pattern>org.kapunga.cy.util.*</pattern>
+                                        <branchRate>100</branchRate>
+                                        <lineRate>100</lineRate>
+                                    </regex>
+                                    <regex>
                                         <pattern>org.kapunga.cy.zone.*</pattern>
-                                        <branchRate>90</branchRate>
-                                        <lineRate>80</lineRate>
+                                        <branchRate>100</branchRate>
+                                        <lineRate>100</lineRate>
                                     </regex>
                                 </regexes>
                             </check>
