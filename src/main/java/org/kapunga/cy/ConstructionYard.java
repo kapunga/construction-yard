@@ -18,7 +18,6 @@
  */
 package org.kapunga.cy;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -47,12 +46,19 @@ public final class ConstructionYard extends JavaPlugin {
 	public static final String PERM_WARP = "conyard.warp";
 	public static final String PERM_CHEST = "conyard.chest";
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onEnable() {
+		// TODO: Add enable code.
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void onDisable() {
-
+		// TODO: Add disable code.
 	}
 }
