@@ -4,9 +4,9 @@ import org.bukkit.Location;
 import org.bukkit.World;
 
 public class WorldRect {
-	private final String worldName;
-	private final int x,z;
-	private final int h,w;
+	private final transient String worldName;
+	private final transient int x,z;
+	private final transient int h,w;
 
 	public WorldRect(final String worldName_, final int x_, final int z_, final int h_, final int w_) {
 		this.worldName = worldName_;
@@ -26,18 +26,14 @@ public class WorldRect {
 	
 	public int getMaxZ() { return z + w; }
 	
-	public boolean isInWorld(World world) { return world.getName().equals(this.worldName); }
+	public boolean isInWorld(final World world) { return world.getName().equals(this.worldName); }
 	
-	public boolean isInWorld(String world) { return world.equals(this.worldName); }
+	public boolean isInWorld(final String world) { return world.equals(this.worldName); }
 	
-	public boolean contains(Location loc) {
+	public boolean contains(final Location loc) {
 		if (loc.getWorld().getName().equals(worldName)) {
 			if (loc.getBlockX() > x && loc.getBlockX() < x + h) {
-				if (loc.getBlockZ() > z && loc.getBlockZ() < z + w) {
-					return true;
-				} else {
-					return false;
-				}
+				return loc.getBlockZ() > z && loc.getBlockZ() < z + w;
 			} else {
 				return false;
 			}

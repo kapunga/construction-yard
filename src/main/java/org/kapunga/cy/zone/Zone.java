@@ -19,6 +19,7 @@
 package org.kapunga.cy.zone;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.World;
 import org.kapunga.cy.util.WorldRect;
@@ -31,13 +32,13 @@ import org.kapunga.cy.util.WorldRect;
  */
 public class Zone {
 	// The name of the world this Construction Zone is in.
-	private transient final WorldRect worldRect;
+	private final transient WorldRect worldRect;
 	
 	// The name of the owner of this Construction Zone.
-	private transient final String ownerName;
+	private final transient String ownerName;
 	
 	// A list of people who are allowed to build in this Construction Zone.
-	private transient final ArrayList<String> coBuilders = new ArrayList<String>();
+	private final transient List<String> coBuilders = new ArrayList<String>();
 	
 	/**
 	 * This is the Constructor for the Zone class.
@@ -127,10 +128,6 @@ public class Zone {
 	 * @return true if the player can build her, false otherwise.
 	 */
 	public boolean canBuildHere(final String builder) {
-		if (ownerName.equals(builder) || coBuilders.contains(builder)) {
-			return true;
-		} else {
-			return false;
-		}
+		return ownerName.equals(builder) || coBuilders.contains(builder);
 	}
 }
