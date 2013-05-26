@@ -1,11 +1,8 @@
-target/
-
 .classpath
 
 .project
 
-.settings/org.eclipse.core.resources.prefs
+target/
 
-.settings/org.eclipse.jdt.core.prefs
+.settings/*.prefs
 
-.settings/org.eclipse.m2e.core.prefs
