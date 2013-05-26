@@ -1,0 +1,32 @@
+name: Construction Yard 
+main: org.kapunga.cy.ConstructionYard
+version: 0.1
+description: A plugin to assist good builders on survival servers.
+author: kapunga
+website: http://dev.bukkit.org/server-mods/construction-yard/
+database: false
+commands:
+  cy:
+    description: The base command for the Construction Yard plugin
+    aliases: conyard
+    permission: conyard.*
+    usage: Type /<command> ? for usage help.
+permissions:
+  conyard.basic:
+    description: Permission to user the Construction Yard command.
+    default: true
+  conyard.admin:
+    description: Permission to administer the Construction Yard command.
+    default: op
+  conyard.scaffolding:
+    description: Permission to build scaffolding.
+    default: true
+  conyard.flying:
+    description: Permission to fly inside a construction zone.
+    default: false
+  conyard.warp:
+    description: Permission to set up constuction zone warps.
+    default: true
+  conyard.chest:
+    description: Permission to set up construction zone chests.
+    default: true

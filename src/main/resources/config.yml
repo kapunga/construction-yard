@@ -1,0 +1,23 @@
+con_yard:
+  modules:
+    scaffolding: true
+    flying: false
+    warps: true
+    fall_mitigation: true
+    chests: true
+  con_zone:
+    radius: 64
+    num_zones: 1
+    max_fall: 8
+  help:
+    show:
+      - Usage for show
+      - /cy show perm -> shows default permissions.
+      - /cy show perm <player> -> shows permissions for a player.
+    zone:
+      - Usage for zone
+      - /cy zone create -> create a new zone centered on your position.
+      - /cy zone info -> gives you info on the zone you are currently in.
+      - /cy zone list -> lists your zones.
+      - /cy zone listall -> lists all constuction zones.
+      - /cy zone del -> delete the zone you are currently in.
